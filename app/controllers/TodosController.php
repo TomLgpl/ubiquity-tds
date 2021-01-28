@@ -19,8 +19,12 @@ class TodosController extends ControllerBase{
 
     #[Route('_default', name: "home")]
 	public function index(){
-		
+		$this->display(['Pain', 'Eau']);
 	}
+
+	private function display(array $list){
+        $this->loadView('TodosController/display.html', ['list' => $list]);
+    }
 
 	#[Post(path: "todos/add", name: "todos.name")]
     public function addElement(){
