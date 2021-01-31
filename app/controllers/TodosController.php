@@ -19,6 +19,7 @@ class TodosController extends ControllerBase{
 
     #[Route('_default', name: "home")]
 	public function index(){
+        $this->showMessage('Bienvenue !', 'TodoLists permet de générer des listes ...', 'info', 'info circle outline');
 		$this->display(['Pain', 'Eau']);
 	}
 
@@ -59,6 +60,10 @@ class TodosController extends ControllerBase{
     #[Get(path: "todos/saveList", name: "todos.save")]
     public function saveList(){
 
+    }
+
+    private function showMessage(string $header, string $message, string $type = '', string $icon = 'info circle', array $buttons = []){
+        $this->loadView('main/showMessage.html', compact('header', 'type', 'icon', 'message', 'buttons'));
     }
 
 }
