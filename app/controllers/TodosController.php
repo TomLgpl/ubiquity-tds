@@ -4,8 +4,15 @@ namespace controllers;
 use Ubiquity\attributes\items\router\Route;
 use Ubiquity\attributes\items\router\Post;
 use Ubiquity\attributes\items\router\Get;
+use Ubiquity\controllers\Router;
+use Ubiquity\utils\http\USession;
 
 class TodosController extends ControllerBase{
+
+    const CACHE_KEY = 'datas/lists/';
+    const EMPTY_LIST_ID = 'not saved';
+    const LIST_SESSION_KEY = 'list';
+    const ACTIVE_LIST_SESSION_KEY = 'active-lsit';
 
     public function initialize()
     {
@@ -19,8 +26,11 @@ class TodosController extends ControllerBase{
 
     #[Route('_default', name: "home")]
 	public function index(){
-        $this->showMessage('Bienvenue !', 'TodoLists permet de générer des listes ...', 'info', 'info circle outline');
-		$this->display(['Pain', 'Eau']);
+        if(USession::exists(self::LIST_SESSION_KEY)){
+            $list = USession::get(self::LIST_SESSION_KEY, []);
+            return $this->display($list);
+        }
+        $this->showMessage('Bienvenue !', 'TodoLists permet de générer des listes ...', 'info', 'info circle outline', [['url' => Router::path('todos.new'), 'caption' => 'Créer une nouvelle liste', 'style' => 'basic inverted']]);
 	}
 
 	private function display(array $list){
@@ -62,7 +72,7 @@ class TodosController extends ControllerBase{
 
     }
 
-    private function showMessage(string $header, string $message, string $type = '', string $icon = 'info circle', array $buttons = []){
+    private function showMessage(string $header, string $message, string $type = 'info', string $icon = 'info circle', array $buttons = []){
         $this->loadView('main/showMessage.html', compact('header', 'type', 'icon', 'message', 'buttons'));
     }
 
