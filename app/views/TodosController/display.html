@@ -2,8 +2,26 @@
     <div class="ui inverted relaxed divided list">
         {% for item in list %}
             <div class="item">
-                {{item}}
+                <div class="item{{ loop.index0 }}">{{ item }}</div>
+                <form action="{{ path("todos.edit") ~ loop.index0 }}" class="ui inline inverted form" method="post">
+                    <div class="field item{{ loop.index0 }}" style="display: none">
+                        <input placeholder="Edit element" name="editElement">
+                    </div>
+                </form>
+                <button class="ui circular mini icon inverted red button right floated" onclick="location.href='{{ path("todos.delete") ~ loop.index0 }}'"><i class="ui trash icon"></i></button>
+                <button class="ui circular mini icon inverted button right floated _toEdit" id="{{ loop.index0 }}"><i class="ui edit icon"></i></button>
             </div>
         {% endfor %}
+        <div class="item">
+            <form action="{{ path("todos.add") }}" class="ui inline inverted form" method="post">
+                <div class="tow fields _form" style="display: none">
+                    <textarea placeholder="Saisir vos éléments sur chaque ligne" name="elements" rows="4"></textarea>
+                    <button class="ui mini green icon button"><i class="ui check circle icon"></i>Valider</button>
+                </div>
+                <div class="field _form">
+                    <input placeholder="Nouvel element" name="element">
+                </div>
+            </form>
+        </div>
     </div>
 </div>
