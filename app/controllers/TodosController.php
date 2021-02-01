@@ -6,10 +6,12 @@
  */
 
 namespace controllers;
+use http\QueryString;
 use Ubiquity\attributes\items\router\Route;
 use Ubiquity\attributes\items\router\Post;
 use Ubiquity\attributes\items\router\Get;
 use Ubiquity\controllers\Router;
+use Ubiquity\utils\http\URequest;
 use Ubiquity\utils\http\USession;
 
 class TodosController extends ControllerBase{
@@ -45,7 +47,18 @@ class TodosController extends ControllerBase{
 
 	#[Post(path: "todos/add", name: "todos.name")]
     public function addElement(){
-
+        $list = USession::get(self::LIST_SESSION_KEY);
+        if(URequest::filled('elements')){
+            $elements = explode("\n", URequest::post('elements'));
+            foreach ($elements as $element) {
+                $list[] = $element;
+            }
+        }
+        if(URequest::filled('element')){
+            $list[] = URequest::post('element');
+        }
+        USession::set(self::LIST_SESSION_KEY, $list);
+        $this->display($list);
     }
 
     #[Get(path: "todos/delete/{index}", name: "todos.delete")]
