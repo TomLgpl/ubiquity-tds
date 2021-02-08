@@ -97,7 +97,7 @@ class Groupe{
 	}
 
 	 public function __toString(){
-		return $this->id.'';
+		return $this->name.'';
 	}
 
 }

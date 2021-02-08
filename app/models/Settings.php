@@ -53,7 +53,7 @@ class Settings{
 	}
 
 	 public function __toString(){
-		return $this->id.'';
+		return $this->name.'';
 	}
 
 }
