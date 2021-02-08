@@ -9,7 +9,7 @@
                     </div>
                 </form>
                 <button class="ui circular mini icon inverted red button right floated" onclick="location.href='{{ path("todos.delete") ~ loop.index0 }}'"><i class="ui trash icon"></i></button>
-                <button class="ui circular mini icon inverted button right floated _toEdit" id="{{ loop.index0 }}"><i class="ui edit icon"></i></button>
+                <button class="ui circular mini icon inverted button right floated _toEdit" onclick="location.href='{{ path("todos.edit") ~ loop.index0 }}'"><i class="ui edit icon"></i></button>
             </div>
         {% endfor %}
         <div class="item">

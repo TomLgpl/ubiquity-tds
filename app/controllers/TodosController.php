@@ -75,7 +75,7 @@ class TodosController extends ControllerBase{
 	public function deleteElement($index){
 		$list = USession::get(self::LIST_SESSION_KEY);
 		if(isset($list[$index])){
-		    $list.$this->deleteElement($index);
+            array_splice($list, $index, 1);
 		    USession::set(self::LIST_SESSION_KEY, $list);
         }
 		$this->displayList($list);
@@ -109,7 +109,7 @@ class TodosController extends ControllerBase{
     #[Get(path: "todos/new/{force}", name: "todos.new")]
     public function newList($force = false){
         if(USession::exists(self::LIST_SESSION_KEY) && $force == false){
-            $this->showMessage("Nouvelle Liste", "Une liste existe déjà. Voulez-vous la vider ?", "", "",
+            $this->showMessage("Nouvelle Liste", "Une liste existe déjà. Voulez-vous la vider ?", "", "warning circle",
                 [['url' => Router::path('todos.new/1'), 'caption' => 'Créer une nouvelle liste', 'style' => 'ui green inverted button'],
                 ['url' => Router::path('todos.menu'), 'caption' => 'Annuler', 'style' => 'basic inverted']]);
         }
