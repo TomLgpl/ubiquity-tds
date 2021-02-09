@@ -1,0 +1,28 @@
+{% extends "OrgaController/base.html" %}
+{% block header %}
+    <h2>{{ orga }}</h2>
+{% endblock %}
+{%  block body %}
+    <ul>
+        <h3>Groupes</h3>
+        {% for group in orga.groupes %}
+            <li>
+                {{ group }}
+                <span class="ui basic circular label">
+                    {{ group.users | length }}
+                </span>
+            </li>
+        {% endfor %}
+    </ul>
+    <ul>
+        <h3>Utilisateurs</h3>
+        {% for user in orga.users %}
+            <li>
+                {{ user }}
+                <span class="ui basic circular label">
+                    {{ user.groupes | length }}
+                </span>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
