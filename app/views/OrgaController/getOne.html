@@ -5,14 +5,14 @@
 {%  block body %}
     <ul>
         <h3>Groupes</h3>
-        {% for group in orga.groupes %}
-            <li>
-                {{ group }}
-                <span class="ui basic circular label">
-                    {{ group.users | length }}
-                </span>
-            </li>
-        {% endfor %}
+            {% for group in orga.groupes %}
+                <li>
+                    {{ group }}
+                    <span class="ui basic circular label">
+                        {{ group.users | length }}
+                    </span>
+                </li>
+            {% endfor %}
     </ul>
     <ul>
         <h3>Utilisateurs</h3>
