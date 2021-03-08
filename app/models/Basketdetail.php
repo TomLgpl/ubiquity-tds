@@ -78,7 +78,7 @@ class Basketdetail{
 	}
 
 	 public function __toString(){
-		return ($this->quantity??'no value').'';
+		return $this->idBasket;
 	}
 
 }

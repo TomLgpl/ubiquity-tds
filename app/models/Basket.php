@@ -81,7 +81,7 @@ class Basket{
 	}
 
 	 public function __toString(){
-		return ($this->dateCreation??'no value').'';
+		return $this->name . " " . $this->dateCreation;
 	}
 
 }
