@@ -95,7 +95,7 @@ class TodosController extends ControllerBase{
             $this->displayList($list);
         }
         else{
-            $this->showMessage("Chargement liste", "L'id ne correspond à aucune liste !", "warning", "warning red circle");
+            $this->showMessage("Chargement liste", "L'id <i>$uniqid</i> ne correspond à aucune liste !", "warning", "warning red circle");
         }
     }
 
@@ -112,14 +112,14 @@ class TodosController extends ControllerBase{
     }
 
     #[Get(path: "todos/new/{force}", name: "todos.new")]
-    public function newList($force = false){
+    public function newList(?bool $force = false){
         if(USession::exists(self::LIST_SESSION_KEY) && $force == false){
             $this->showMessage("Nouvelle Liste", "Une liste existe déjà. Voulez-vous la vider ?", "warning", "warning red circle",
                 [['url' => Router::path('todos.new/1'), 'caption' => 'Créer une nouvelle liste', 'style' => 'ui green inverted button'],
                 ['url' => Router::path('todos.menu'), 'caption' => 'Annuler', 'style' => 'basic inverted']]);
         }
         else {
-            $this->showMessage("Nouvelle Liste", "Une nouvelle liste a été crée !", "", "check circle outline");
+            $this->showMessage("Nouvelle Liste", "Une nouvelle liste a été crée !", "success", "check circle outline");
             $list = [];
             USession::set(self::ACTIVE_LIST_SESSION_KEY, $list);
             $this->displayList($list);
