@@ -11,7 +11,7 @@ use Ubiquity\utils\http\USession;
 /**
   * Controller MainController
   */
-class MainController  extends ControllerBase{
+class MainController extends ControllerBase{
 
     use WithAuthTrait;
 

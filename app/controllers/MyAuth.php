@@ -11,7 +11,7 @@ use controllers\auth\files\MyAuthFiles;
 use Ubiquity\controllers\auth\AuthFiles;
 use Ubiquity\attributes\items\router\Route;
 
-#[Route(path: "/login",inherited: true,automated: true)]
+#[Route(path: "/login", inherited: true, automated: true)]
 class MyAuth extends \Ubiquity\controllers\auth\AuthController{
 
     public function _setLoginCaption($_loginCaption) {
@@ -59,8 +59,12 @@ class MyAuth extends \Ubiquity\controllers\auth\AuthController{
 	public function _getBaseRoute() {
 		return '/login';
 	}
-	
-	protected function getFiles(): AuthFiles {
+
+	public function _getBodySelector() {
+	    return '#page-container';
+    }
+
+    protected function getFiles(): AuthFiles {
 		return new MyAuthFiles();
 	}
 
