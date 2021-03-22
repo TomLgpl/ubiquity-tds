@@ -15,7 +15,7 @@ class MainController extends ControllerBase{
     use WithAuthTrait;
 
 	public function index(){
-        $user = DAO::getById(User::class, [USession::get('idUser')], ['orders']);
+        $user = DAO::getById(User::class, [USession::get('idUser')], ['orders', 'baskets', ]);
 		$this->loadView("MainController/index.html", ['user' => $user]);
 	}
 

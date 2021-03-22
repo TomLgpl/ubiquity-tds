@@ -1,33 +1,78 @@
-<div class="ui inverted segment">
-    <div class="ui blue large ribbon label">Vos commandes</div>
-    <div>
-        <h4 class="ui inverted header">
-            <br>
+<div class="ui grid">
+    <div class="ten wide column">
+        <div class="ui inverted segment">
+            <div class="ui blue large ribbon label">Vos commandes</div>
+            <h4 class="ui inverted header">
+                {% if user.orders | length == 0 %}
+                    Vous n'avez pas encore effectué de commande !
+                {% elseif user.orders | length == 1 %}
+                    Vous avez déjà passé une commande !
+                {% else %}
+                    Vous avez déja passé {{ user.orders | length }} commandes !
+                {% endif %}
+            </h4>
             {% if user.orders | length == 0 %}
-                Vous n'avez pas encore effectué de commande !
+                <button class="ui inverted labeled icon button">
+                    <i class="shopping cart icon"></i>
+                    Voir le magasin
+                </button>
             {% elseif user.orders | length == 1 %}
-                Vous avez déjà passé une commande !
+                <button class="ui inverted labeled icon button">
+                    <i class="shopping bag icon"></i>
+                    Voir votre commande
+                </button>
             {% else %}
-                Vous avez déja passé {{ user.orders | length }} commandes !
+                <button class="ui inverted labeled icon button">
+                    <i class="shopping bag icon"></i>
+                    Voir vos commandes
+                </button>
             {% endif %}
-        </h4>
+        </div>
     </div>
-    <br>
-    {% if user.orders | length == 0 %}
-        <button class="ui inverted labeled icon button">
-            <i class="shopping bag icon"></i>
-            Voir le magasin
-        </button>
-    {% elseif user.orders | length == 1 %}
-        <button class="ui inverted labeled icon button">
-            <i class="shopping bag icon"></i>
-            Voir votre commande
-        </button>
-    {% else %}
-        <button class="ui inverted labeled icon button">
-            <i class="shopping bag icon"></i>
-            Voir vos commandes
-        </button>
-    {% endif %}
+    <div class="six wide column">
+        <div class="ui inverted segment">
+            <div class="ui yellow large ribbon label">Votre Panier</div>
+            <h4 class="ui inverted header">
+                {% if user.baskets | length == 0 %}
+                    Votre paniers est vide !
+                {% elseif user.baskets | length == 1 %}
+                    1 article dans votre panier <br>
+                    <div class="ui small inverted statistic">
+                        <div class="value">
+                            x, yy €
+                        </div>
+                    </div>
+                {% else %}
+                    {{ user.barkets | length }} articles dans votre panier <br>
+                    <div class="ui small inverted statistic">
+                        <div class="value">
+                            x, yy €
+                        </div>
+                    </div>
+                {% endif %}
+            </h4>
+            {% if user.baskets | length == 0 or user.baskets.basketdetails | length == 0 %}
+                <button class="ui inverted labeled icon button">
+                    <i class="shopping cart icon"></i>
+                    Voir le magasin
+                </button>
+            {% else %}
+                <button class="ui inverted labeled icon button">
+                    <i class="shopping bag icon"></i>
+                    Voir votre panier
+                </button>
+            {% endif %}
+        </div>
+    </div>
+    <div class="sixteen wide column">
+        <div class="ui inverted segment">
+            <div class="ui green large ribbon label">Promotions</div>
+        </div>
+    </div>
+    <div class="sixteen wide column">
+        <div class="ui inverted segment">
+            <div class="ui brown large ribbon label">Consulté récemment</div>
+        </div>
+    </div>
 </div>
 
