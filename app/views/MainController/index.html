@@ -67,6 +67,41 @@
     <div class="sixteen wide column">
         <div class="ui inverted segment">
             <div class="ui green large ribbon label">Promotions</div>
+            <div class="ui grid">
+                {% for product in promotions %}
+                <div class="ui three wide column">
+                    <br>
+                    <img class="ui center aligned image" src="public/assets/img/{{ product.id }}.jpg" alt="">
+                    <div class="ui grid">
+                        <div class="ui ten wide column">
+                            <h3 class="ui inverted header">{{ product.name }}</h3>
+                        </div>
+                        <div class="ui six wide column">
+                            <h4 class="ui red inverted aligned right header">
+                                <del>{{ product.price }}</del>
+                                €
+                            </h4>
+                        </div>
+                        <div class="ui six wide column">
+                            <h4 class="ui inverted header">
+                                {{ product.promotion * 100 }} %
+                            </h4>
+                        </div>
+                        <div class="ui ten wide column">
+                            <h4 class="ui green inverted aligned right header">
+                                {{ product.price * ( 1 + product.promotion) }} €
+                            </h4>
+                        </div>
+                        <div class="ui container">
+                            <button class="ui inverted fluid button">
+                                {{ product.section.name }}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <br>
         </div>
     </div>
     <div class="sixteen wide column">
@@ -75,4 +110,3 @@
         </div>
     </div>
 </div>
-
