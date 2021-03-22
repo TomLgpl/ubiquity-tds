@@ -1,0 +1,33 @@
+<div class="ui inverted segment">
+    <div class="ui blue large ribbon label">Vos commandes</div>
+    <div>
+        <h4 class="ui inverted header">
+            <br>
+            {% if user.orders | length == 0 %}
+                Vous n'avez pas encore effectué de commande !
+            {% elseif user.orders | length == 1 %}
+                Vous avez déjà passé une commande !
+            {% else %}
+                Vous avez déja passé {{ user.orders | length }} commandes !
+            {% endif %}
+        </h4>
+    </div>
+    <br>
+    {% if user.orders | length == 0 %}
+        <button class="ui inverted labeled icon button">
+            <i class="shopping bag icon"></i>
+            Voir le magasin
+        </button>
+    {% elseif user.orders | length == 1 %}
+        <button class="ui inverted labeled icon button">
+            <i class="shopping bag icon"></i>
+            Voir votre commande
+        </button>
+    {% else %}
+        <button class="ui inverted labeled icon button">
+            <i class="shopping bag icon"></i>
+            Voir vos commandes
+        </button>
+    {% endif %}
+</div>
+
