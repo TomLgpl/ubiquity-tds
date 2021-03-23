@@ -1,0 +1,79 @@
+<div class="ui inverted segment">
+    <div class="ui inverted breadcrumb">
+        <a class="section" href="{{ path('home') }}">Home</a>
+        <div class="divider"> / </div>
+        <p class="active section">Store</p>
+    </div>
+</div>
+<div class="ui grid">
+    <div class="six wide column">
+        <div class="ui inverted segment">
+            <div class="ui large ribbon label">
+                <h3>Nos rayons</h3>
+            </div>
+            <div class="ui inverted relaxed divided list">
+                {% for section in sections %}
+                    <div class="item">
+                        <a>
+                            <h4>{{ section.name }} ({{ section.products | length }})</h4>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="ten wide column">
+        <div class="ui inverted segment">
+            <div class="ui green large ribbon label">
+                <h3>Promotions</h3>
+            </div>
+            <div class="ui grid">
+                {% for product in promotions %}
+                    <div class="ui five wide column">
+                        <br>
+                        {% if product.image == "" %}
+                            <div class="ui grey inverted center aligned segment">
+                                <i class="ui black huge cart plus icon"></i>
+                            </div>
+                        {% else %}
+                            <img class="ui center aligned image" src="public/assets/img/{{ product.image }}.jpg" alt="">
+                        {% endif %}
+                        <div class="ui grid">
+                            <div class="ui ten wide column">
+                                <h3 class="ui inverted header">{{ product.name }}</h3>
+                            </div>
+                            <div class="ui six wide column">
+                                <h4 class="ui red inverted aligned right header">
+                                    <del>{{ product.price }}</del> €
+                                </h4>
+                            </div>
+                            <div class="ui eight wide column">
+                                <h4 class="ui inverted header">
+                                    {{ product.promotion }} €
+                                </h4>
+                            </div>
+                            <div class="ui eight wide column">
+                                <h4 class="ui green inverted aligned right header">
+                                    {{ product.price + product.promotion }} €
+                                </h4>
+                            </div>
+                            <div class="ui container">
+                                <button class="ui inverted fluid button">
+                                    {{ product.section.name }}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <br>
+        </div>
+    </div>
+    <div class="sixteen wide column">
+        <div class="ui inverted segment">
+            <div class="ui brown large ribbon label">
+                <h3>Consultés récemment</h3>
+            </div>
+        </div>
+    </div>
+</div>
