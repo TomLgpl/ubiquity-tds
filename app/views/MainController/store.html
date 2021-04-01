@@ -14,7 +14,7 @@
             <div class="ui inverted relaxed divided list">
                 {% for section in sections %}
                     <div class="item">
-                        <a>
+                        <a href="{{ path('store.section', [section.id]) }}" data-target="#ajax-section">
                             <h4>{{ section.name }} ({{ section.products | length }})</h4>
                         </a>
                     </div>
@@ -22,7 +22,7 @@
             </div>
         </div>
     </div>
-    <div class="ten wide column">
+    <div class="ten wide column" id="ajax-section">
         <div class="ui inverted segment">
             <div class="ui green large ribbon label">
                 <h3>Promotions</h3>
@@ -77,3 +77,4 @@
         </div>
     </div>
 </div>
+{{ script_foot|raw }}

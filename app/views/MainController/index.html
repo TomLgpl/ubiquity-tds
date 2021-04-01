@@ -14,7 +14,7 @@
                 {% endif %}
             </h4>
             {% if user.orders | length == 0 %}
-                <button class="ui inverted labeled icon button">
+                <button class="ui inverted labeled icon button" onclick="location.href='{{ path('store') }}'">
                     <i class="shopping cart icon"></i>
                     Voir le magasin
                 </button>
@@ -56,7 +56,7 @@
                 {% endif %}
             </h4>
             {% if user.baskets | length == 0 or user.baskets.basketdetails | length == 0 %}
-                <button class="ui inverted labeled icon button">
+                <button class="ui inverted labeled icon button" onclick="location.href='{{ path('store') }}'">
                     <i class="shopping cart icon"></i>
                     Voir le magasin
                 </button>
