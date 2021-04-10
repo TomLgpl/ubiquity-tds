@@ -6,7 +6,7 @@
     </div>
 </div>
 <div class="ui grid">
-    <div class="six wide column">
+    <div class="three wide column">
         <div class="ui inverted segment">
             <div class="ui large ribbon label">
                 <h3>Nos rayons</h3>
@@ -21,15 +21,20 @@
                 {% endfor %}
             </div>
         </div>
+        <div class="ui inverted segment">
+            <div class="ui brown large ribbon label">
+                <h3>Récents</h3>
+            </div>
+        </div>
     </div>
-    <div class="ten wide column" id="ajax-section">
+    <div class="thirteen wide column" id="ajax-section">
         <div class="ui inverted segment">
             <div class="ui green large ribbon label">
                 <h3>Promotions</h3>
             </div>
             <div class="ui grid">
                 {% for product in promotions %}
-                    <div class="ui five wide column">
+                    <div class="ui four wide column">
                         <br>
                         {% if product.image == "" %}
                             <div class="ui grey inverted center aligned segment">
@@ -67,13 +72,6 @@
                 {% endfor %}
             </div>
             <br>
-        </div>
-    </div>
-    <div class="sixteen wide column">
-        <div class="ui inverted segment">
-            <div class="ui brown large ribbon label">
-                <h3>Consultés récemment</h3>
-            </div>
         </div>
     </div>
 </div>

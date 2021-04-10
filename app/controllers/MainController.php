@@ -34,14 +34,14 @@ class MainController extends ControllerBase{
 	public function store(){
         $sections = DAO::getAll(Section::class);
         $promotions = DAO::getAll(Product::class, 'promotion <> 0.00', ['section']);
-        $this->jquery->getHref('a[data-target]', parameters: ['historize'=>false, 'hasLoader'=>'internal','listenerOn'=>'body']);
+        $this->jquery->getHref('a[data-target]', parameters: [ 'historize' => false, 'hasLoader' => 'internal','listenerOn' => 'body']);
         $this->jquery->renderView("MainController/store.html", ['sections' => $sections, 'promotions' => $promotions]);
 	}
 
 
 	#[Get(path: "store/section/{id}", name : "store.section")]
 	public function section($id){
-        $section = DAO::getById(Section::class, $id, [Product::class]);
+        $section = DAO::getById(Section::class, $id, ['products']);
         $this->jquery->renderView("MainController/section.html", ['section' => $section]);
 	}
 

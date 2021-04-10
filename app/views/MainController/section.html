@@ -2,4 +2,36 @@
     <div class="ui green large ribbon label">
         <h3>{{ section.name }}</h3>
     </div>
+    <div class="ui grid">
+        {% for product in section.products %}
+            <div class="ui four wide column">
+                <br>
+                {% if product.image == "" %}
+                    <div class="ui grey inverted center aligned segment">
+                        <i class="ui black huge cart plus icon"></i>
+                    </div>
+                {% else %}
+                    <img class="ui center aligned image" src="public/assets/img/{{ product.image }}.jpg" alt="">
+                {% endif %}
+                <div class="ui grid">
+                    <div class="ui nine wide column">
+                        <h3 class="ui inverted header">{{ product.name }}</h3>
+                    </div>
+                    {% if product.promotion == 0.00 %}
+                        <div class="ui seven wide column">
+                            <h4 class="ui inverted aligned right header">
+                                {{ product.price }} €
+                            </h4>
+                        </div>
+                    {% else %}
+                        <div class="ui seven wide column">
+                            <h4 class="ui green inverted aligned right header">
+                                {{ product.price + product.promotion}} €
+                            </h4>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 </div>
