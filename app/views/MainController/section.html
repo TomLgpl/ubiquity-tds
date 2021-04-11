@@ -5,32 +5,34 @@
     <div class="ui grid">
         {% for product in section.products %}
             <div class="ui four wide column">
-                <br>
-                {% if product.image == "" %}
-                    <div class="ui grey inverted center aligned segment">
-                        <i class="ui black huge cart plus icon"></i>
-                    </div>
-                {% else %}
-                    <img class="ui center aligned image" src="public/assets/img/{{ product.image }}.jpg" alt="">
-                {% endif %}
-                <div class="ui grid">
-                    <div class="ui nine wide column">
-                        <h3 class="ui inverted header">{{ product.name }}</h3>
-                    </div>
-                    {% if product.promotion == 0.00 %}
-                        <div class="ui seven wide column">
-                            <h4 class="ui inverted aligned right header">
-                                {{ product.price }} €
-                            </h4>
+                <a href="{{ path('store.product', [section.id, product.id]) }}" data-target="#ajax-section">
+                    <br>
+                    {% if product.image == "" %}
+                        <div class="ui grey inverted center aligned segment">
+                            <i class="ui black huge cart plus icon"></i>
                         </div>
                     {% else %}
-                        <div class="ui seven wide column">
-                            <h4 class="ui green inverted aligned right header">
-                                {{ product.price + product.promotion}} €
-                            </h4>
-                        </div>
+                        <img class="ui center aligned image" src="public/assets/img/{{ product.image }}.jpg" alt="">
                     {% endif %}
-                </div>
+                    <div class="ui grid">
+                        <div class="ui nine wide column">
+                            <h3 class="ui inverted header">{{ product.name }}</h3>
+                        </div>
+                        {% if product.promotion == 0.00 %}
+                            <div class="ui seven wide column">
+                                <h4 class="ui inverted aligned right header">
+                                    {{ product.price }} €
+                                </h4>
+                            </div>
+                        {% else %}
+                            <div class="ui seven wide column">
+                                <h4 class="ui green inverted aligned right header">
+                                    {{ product.price + product.promotion}} €
+                                </h4>
+                            </div>
+                        {% endif %}
+                    </div>
+                </a>
             </div>
         {% endfor %}
     </div>

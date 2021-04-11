@@ -45,4 +45,11 @@ class MainController extends ControllerBase{
         $this->jquery->renderView("MainController/section.html", ['section' => $section]);
 	}
 
+	#[Get(path: "store/product/{idSection}/{idProduct}", name: "store.product")]
+    public function product($idSection, $idProduct){
+        $section = DAO::getById(Section::class, $idSection);
+        $product = DAO::getById(Product::class, $idProduct);
+        $this->jquery->renderView("MainController/product.html", ['product' => $product, 'section' => $section]);
+    }
+
 }

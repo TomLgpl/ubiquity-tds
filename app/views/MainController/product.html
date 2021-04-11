@@ -1,0 +1,26 @@
+<div class="ui inverted segment">
+    <div class="ui green large ribbon label">
+        <a href="{{ path('store.section', [section.id]) }}" data-target="#ajax-section">
+            <h3>{{ section.name }}</h3>
+        </a>
+    </div>
+    <br><br>
+    <div class="ui grid">
+        <div class="ui eight wide column">
+            {% if product.image == "" %}
+                <div class="ui grey inverted center aligned segment">
+                    <i class="ui black huge cart plus icon"></i>
+                </div>
+            {% else %}
+                <img class="ui center aligned image" src="public/assets/img/{{ product.image }}.jpg" alt="">
+            {% endif %}
+        </div>
+        <div class="ui eight wide column">
+            <h2>{{ product.name }}</h2>
+            <h2 class="ui inverted aligned right header">{{ product.price }} €</h2>
+        </div>
+        <h3>Comment</h3>
+        <p>{{ product.comments }}</p>
+    </div>
+    <br><br>
+</div>
