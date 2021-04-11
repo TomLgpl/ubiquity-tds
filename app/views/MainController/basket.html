@@ -1,0 +1,74 @@
+<div class="ui inverted segment">
+    <div class="ui inverted breadcrumb">
+        <a class="section" href="{{ path('home') }}">Home</a>
+        <div class="divider"> /</div>
+        <a class="section" href="{{ path('store') }}">Store</a>
+        <div class="divider"> /</div>
+        <p class="active section">Basket</p>
+    </div>
+</div>
+<div class="ui inverted segment">
+    <div class="ui blue large ribbon label">
+        <h3>Your basket</h3>
+    </div>
+    <br>
+    <div class="ui inverted grey segment">
+        <div class="ui grid">
+            <div class="two wide column">
+                <h4>N°</h4>
+            </div>
+            <div class="five wide column">
+                <h4>Nom</h4>
+            </div>
+            <div class="two wide column">
+                <h4>Price</h4>
+            </div>
+            <div class="four wide column">
+                <h4>Quantity</h4>
+            </div>
+            <div class="three wide column">
+                <h4>Total</h4>
+            </div>
+        </div>
+        <div class="ui inverted relaxed divided list">
+            {% for detail in basket.basketdetails %}
+                <div class="item">
+                    <div class="ui grid">
+                        <div class="two wide column">
+                            {{ detail.product.id }}
+                        </div>
+                        <div class="five wide column">
+                            {{ detail.product.name }}
+                        </div>
+                        <div class="two wide column">
+                            {{ detail.product.price }} €
+                        </div>
+                        <div class="four wide column">
+                            <div class="ui buttons">
+                                <button class="ui button" onclick="location.href='{{ path('store.basket.less', [detail.product.id]) }}'">-</button>
+                                <button class="ui button">{{ detail.quantity }}</button>
+                                <button class="ui button" onclick="location.href='{{ path('store.basket.more', [detail.product.id]) }}'">+</button>
+                            </div>
+                        </div>
+                        <div class="three wide column">
+                            {{ detail.quantity * detail.product.price }} €
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            <div class="item">
+                <div class="ui grid">
+                    <div class="thirteen wide column"></div>
+                    <div class="three wide column">
+                        {{ prixPanier }} €
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <button class="ui inverted labeled icon button" onclick="location.href='{{ path('store') }}'">
+        <i class="shopping bag icon"></i>
+        Go to Shop
+    </button>
+</div>

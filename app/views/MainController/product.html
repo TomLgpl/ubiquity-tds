@@ -18,6 +18,10 @@
         <div class="ui eight wide column">
             <h2>{{ product.name }}</h2>
             <h2 class="ui inverted aligned right header">{{ product.price }} €</h2>
+            <br><br>
+            <button class="ui inverted fluid button" onclick="location.href='{{ path('store.product.add', [product.id]) }}'">
+                Add {{ product.name }} <br><i class="ui plus icon"></i>
+            </button>
         </div>
         <h3>Comment</h3>
         <p>{{ product.comments }}</p>

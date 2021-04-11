@@ -19,12 +19,12 @@
                     Voir le magasin
                 </button>
             {% elseif user.orders | length == 1 %}
-                <button class="ui inverted labeled icon button" onclick="location.href='{{ path('store.orders', [user.id]) }}'">
+                <button class="ui inverted labeled icon button" onclick="location.href='{{ path('store.orders') }}'">
                     <i class="shopping bag icon"></i>
                     Voir votre commande
                 </button>
             {% else %}
-                <button class="ui inverted labeled icon button" onclick="location.href='{{ path('store.orders', [user.id]) }}'">
+                <button class="ui inverted labeled icon button" onclick="location.href='{{ path('store.orders') }}'">
                     <i class="shopping bag icon"></i>
                     Voir vos commandes
                 </button>
@@ -65,7 +65,7 @@
                     Voir le magasin
                 </button>
             {% else %}
-                <button class="ui inverted labeled icon button">
+                <button class="ui inverted labeled icon button" onclick="location.href='{{ path('store.basket') }}'">
                     <i class="shopping bag icon"></i>
                     Voir votre panier
                 </button>
