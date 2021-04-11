@@ -1,0 +1,67 @@
+<div class="ui inverted segment">
+    <div class="ui inverted breadcrumb">
+        <a class="section" href="{{ path('home') }}">Home</a>
+        <div class="divider"> / </div>
+        <a class="section" href="{{ path('store') }}">Store</a>
+        <div class="divider"> / </div>
+        <p class="active section">Orders</p>
+    </div>
+</div>
+<div class="ui inverted segment">
+    <div class="ui blue large ribbon label">
+        <h3>Your order</h3>
+    </div>
+    <br><br>
+    <div class="ui inverted relaxed divided list">
+        <div class="item">
+            <div class="ui segment">
+                <div class="ui grid">
+                    <div class="two wide column">
+                        <h4>N°</h4>
+                    </div>
+                    <div class="four wide column">
+                        <h4>Date</h4>
+                    </div>
+                    <div class="two wide column">
+                        <h4>Price</h4>
+                    </div>
+                    <div class="two wide column">
+                        <h4>To pay</h4>
+                    </div>
+                    <div class="three wide column">
+                        <h4>Status</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        {% for order in orders %}
+            <div class="item">
+                <div class="ui grey inverted segment">
+                    <div class="ui grid">
+                        <div class="two wide column">
+                            {{ order.id }}
+                        </div>
+                        <div class="four wide column">
+                            {{ order.dateCreation }}
+                        </div>
+                        <div class="two wide column">
+                            {{ order.amount }} €
+                        </div>
+                        <div class="two wide column">
+                            {{ order.toPay }} €
+                        </div>
+                        <div class="three wide column">
+                            {{ order.status }}
+                        </div>
+                        <div class="three wide column">
+                            <button class="ui fluid blue inverted button" onclick="location.href='{{ path('store.order', [order.id]) }}'">
+                                <i class="plus icon"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>

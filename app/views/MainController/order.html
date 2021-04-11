@@ -1,0 +1,84 @@
+<div class="ui inverted segment">
+    <div class="ui inverted breadcrumb">
+        <a class="section" href="{{ path('home') }}">Home</a>
+        <div class="divider"> /</div>
+        <a class="section" href="{{ path('store') }}">Store</a>
+        <div class="divider"> /</div>
+        <a class="section" href="{{ path('store.orders', [user.id]) }}">Orders</a>
+        <div class="divider"> /</div>
+        <p class="active section">Order</p>
+    </div>
+</div>
+<div class="ui inverted segment">
+    <div class="ui blue large ribbon label">
+        <h3>Order N° {{ order.id }}</h3>
+    </div>
+    <h3>from {{ order.dateCreation }}</h3>
+    <br>
+    <br>
+    <div class="ui inverted grey segment">
+        <div class="ui grid">
+            <div class="two wide column">
+                <h4>N°</h4>
+            </div>
+            <div class="five wide column">
+                <h4>Nom</h4>
+            </div>
+            <div class="two wide column">
+                <h4>Price</h4>
+            </div>
+            <div class="two wide column">
+                <h4>Quantity</h4>
+            </div>
+            <div class="two wide column">
+                <h4>Prepared</h4>
+            </div>
+            <div class="three wide column">
+                <h4>Total</h4>
+            </div>
+        </div>
+        <div class="ui inverted relaxed divided list">
+            {% for detail in orderDetails %}
+                <div class="item">
+                    <div class="ui grid">
+                        <div class="two wide column">
+                            {{ detail.product.id }}
+                        </div>
+                        <div class="five wide column">
+                            {{ detail.product.name }}
+                        </div>
+                        <div class="two wide column">
+                            {{ detail.product.price }} €
+                        </div>
+                        <div class="two wide column">
+                            {{ detail.quantity }}
+                        </div>
+                        <div class="two wide column">
+                            {% if detail.prepared == 1 %}
+                                <i class="green check circle outline large icon"></i>
+                            {% else %}
+                                <i class="red times circle outline large icon"></i>
+                            {% endif %}
+                        </div>
+                        <div class="three wide column">
+                            {{ detail.quantity * detail.product.price }} €
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            <div class="item">
+                <div class="ui grid">
+                    <div class="thirteen wide column"></div>
+                    <div class="three wide column">
+                        {{ order.amount }} €
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <button class="ui inverted labeled icon button" onclick="location.href='{{ path('store.orders', [user.id]) }}'">
+        <i class="shopping bag icon"></i>
+        Voir vos commandes
+    </button>
+</div>

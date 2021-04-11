@@ -19,12 +19,12 @@
                     Voir le magasin
                 </button>
             {% elseif user.orders | length == 1 %}
-                <button class="ui inverted labeled icon button">
+                <button class="ui inverted labeled icon button" onclick="location.href='{{ path('store.orders', [user.id]) }}'">
                     <i class="shopping bag icon"></i>
                     Voir votre commande
                 </button>
             {% else %}
-                <button class="ui inverted labeled icon button">
+                <button class="ui inverted labeled icon button" onclick="location.href='{{ path('store.orders', [user.id]) }}'">
                     <i class="shopping bag icon"></i>
                     Voir vos commandes
                 </button>
@@ -36,26 +36,30 @@
             <div class="ui yellow large ribbon label">
                 <h3>Votre Panier</h3>
             </div>
-            <h4 class="ui inverted header">
-                {% if user.baskets | length == 0 %}
-                    Votre paniers est vide !
-                {% elseif user.baskets | length == 1 %}
-                    1 article dans votre panier <br>
-                    <div class="ui small inverted statistic">
-                        <div class="value">
-                            x, yy €
-                        </div>
+            {% if  nbArticles == 0 %}
+                <h4>Votre paniers est vide !</h4>
+                <div class="ui small inverted statistic">
+                    <div class="value">
+                        0.00 €
                     </div>
-                {% else %}
-                    {{ user.barkets | length }} articles dans votre panier <br>
-                    <div class="ui small inverted statistic">
-                        <div class="value">
-                            x, yy €
-                        </div>
+                </div>
+            {% elseif nbArticles == 1 %}
+                <h4>1 produit dans votre panier</h4>
+                <div class="ui small inverted statistic">
+                    <div class="value">
+                        {{ prixPanier }} €
                     </div>
-                {% endif %}
-            </h4>
-            {% if user.baskets | length == 0 or user.baskets.basketdetails | length == 0 %}
+                </div>
+            {% else %}
+                <h4>{{ nbArticles }} articles dans votre panier</h4>
+                <div class="ui small inverted statistic">
+                   <div class="value">
+                       {{ prixPanier }} €
+                   </div>
+                </div>
+            {% endif %}
+            <br>
+            {% if nbArticles == 0 %}
                 <button class="ui inverted labeled icon button" onclick="location.href='{{ path('store') }}'">
                     <i class="shopping cart icon"></i>
                     Voir le magasin
